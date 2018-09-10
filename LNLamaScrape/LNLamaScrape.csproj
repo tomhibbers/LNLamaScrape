@@ -2,6 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>LNLamaScrape</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Tom Hibbers</Authors>
+    <PackageId>LNLamaScrape</PackageId>
+    <Product>LNLamaScrape</Product>
+    <Description></Description>
   </PropertyGroup>
 
   <ItemGroup>
