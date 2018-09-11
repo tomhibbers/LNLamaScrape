@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LNLamaScrape.Models;
-using LNLamaScrape.Models.Interfaces;
-using LNLamaScrape.Repository.Interfaces;
 using LNLamaScrape.Tools;
+
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LNLamaScrape.Tests")]
 
 namespace LNLamaScrape.Repository
 {
@@ -30,12 +28,12 @@ namespace LNLamaScrape.Repository
         public bool SupportsDescription { get; }
 
 
-        protected RepositoryBase(IWebClient webClient, string name, string uriString, string iconFileName, bool supportsAllMetadata) :
-            this(webClient, name, uriString, iconFileName, supportsAllMetadata, supportsAllMetadata, supportsAllMetadata, supportsAllMetadata, supportsAllMetadata)
+        protected RepositoryBase(IWebClient webClient, string name, string uriString, string iconFileName, bool supportsAllMetadata, RepositoryType repositoryType) :
+            this(webClient, name, uriString, iconFileName, supportsAllMetadata, supportsAllMetadata, supportsAllMetadata, supportsAllMetadata, supportsAllMetadata, repositoryType)
         {
 
         }
-        protected RepositoryBase(IWebClient webClient, string name, string uriString, string iconFileName, bool supportsCover, bool supportsAuthor, bool supportsLastUpdateTime, bool supportsTags, bool supportsDescription)
+        protected RepositoryBase(IWebClient webClient, string name, string uriString, string iconFileName, bool supportsCover, bool supportsAuthor, bool supportsLastUpdateTime, bool supportsTags, bool supportsDescription, RepositoryType repositoryType)
         {
             WebClient = webClient;
             Name = name;
@@ -46,6 +44,7 @@ namespace LNLamaScrape.Repository
             SupportsLastUpdateTime = supportsLastUpdateTime;
             SupportsTags = supportsTags;
             SupportsDescription = supportsDescription;
+            RepositoryType = repositoryType;
         }
         public Task<IReadOnlyList<ISeries>> GetSeriesAsync()
         {

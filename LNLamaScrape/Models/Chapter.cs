@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using LNLamaScrape.Models.Interfaces;
+using LNLamaScrape.Models;
 
 namespace LNLamaScrape.Models
 {

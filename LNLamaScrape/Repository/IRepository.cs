@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LNLamaScrape.Models;
-using LNLamaScrape.Models.Interfaces;
 
-namespace LNLamaScrape.Repository.Interfaces
+namespace LNLamaScrape.Repository
 {
     public interface IRepository
     {

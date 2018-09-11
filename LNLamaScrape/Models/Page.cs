@@ -4,8 +4,8 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.XPath;
-using LNLamaScrape.Models.Interfaces;
 
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LNLamaScrape.Tests")]
 namespace LNLamaScrape.Models
 {
     internal class Page : IPage
@@ -16,12 +16,35 @@ namespace LNLamaScrape.Models
         public Uri PageUri { get; private set; }
         public int PageNo { get; private set; }
         public Uri ImageUri { get; internal set; }
+        public string PageContent { get; internal set; }
 
         internal Page(Chapter parent, Uri pageUri, int pageNo)
         {
             ParentChapterInternal = parent;
             PageUri = pageUri;
             PageNo = pageNo;
+        }
+        internal Task<byte[]> GetPageImageAsync()
+        {
+            using (var cts = new CancellationTokenSource())
+            {
+                return GetPageImageAsync(cts.Token);
+            }
+        }
+        internal Task<byte[]> GetPageImageAsync(CancellationToken token)
+        {
+            return ParentChapterInternal.ParentSeriesInternal.ParentRepositoryInternal.GetPageImageAsync(this, token);
+        }
+        internal Task<byte[]> GetPageTextAsync()
+        {
+            using (var cts = new CancellationTokenSource())
+            {
+                return GetPageTextAsync(cts.Token);
+            }
+        }
+        internal Task<byte[]> GetPageTextAsync(CancellationToken token)
+        {
+            return ParentChapterInternal.ParentSeriesInternal.ParentRepositoryInternal.GetPageTextAsync(this, token);
         }
 
         public Task<byte[]> GetPageContentAsync()
