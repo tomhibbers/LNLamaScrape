@@ -12,13 +12,9 @@ namespace LNLamaScrape.DB
 {
     public class DbRepository
     {
-        internal void Init(DbConfig dbConfig)
-        {
-            dbConfig.Init();
-        }
         public async Task UpdateDbSeriesAsync(DbConfig dbConfig, IReadOnlyList<ISeries> series)
         {
-            Init(dbConfig);
+            dbConfig.Init();
             var seriesDocuments = series.Select(d => new BsonDocument()
             {
                 {"title", new BsonString(d.Title) },
@@ -41,7 +37,7 @@ namespace LNLamaScrape.DB
         }
         public async Task UpdateDbChaptersAsync(DbConfig dbConfig, IReadOnlyList<IChapter> chapters)
         {
-            Init(dbConfig);
+            dbConfig.Init();
             var seriesDocuments = chapters.Select(d => new BsonDocument()
             {
                 {"title", new BsonString(d.Title) },
@@ -65,7 +61,7 @@ namespace LNLamaScrape.DB
 
         public async Task UpdateDbPagesAsync(DbConfig dbConfig, IReadOnlyList<IPage> pages)
         {
-            Init(dbConfig);
+            dbConfig.Init();
             // generate model
             var pagesDocuments = pages.Select(d => new BsonDocument()
             {
@@ -89,8 +85,7 @@ namespace LNLamaScrape.DB
         }
         public async Task UpdateDbPagesWithContentAsync(DbConfig dbConfig, IReadOnlyList<IPage> pages)
         {
-            Init(dbConfig);
-
+            dbConfig.Init();
             // download content for pages
             var taskList = new List<Task>();
             foreach (var i in pages)
