@@ -1,29 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using LNLamaScrape.Models;
 using LNLamaScrape.Repository;
-using LNLamaScrape.Tools;
 using Xunit;
-
 
 namespace LNLamaScrape.Tests.Repository
 {
-    public class ReadLightNovelRepositoryTest
+    public class MangaHereRepositoryTest
     {
         private CancellationTokenSource _cts { get; }
-        private readonly ReadLightNovelRepository _repo;
+        private readonly MangaHereRepository _repo;
 
-        public ReadLightNovelRepositoryTest()
+        public MangaHereRepositoryTest()
         {
-            _repo = new ReadLightNovelRepository(new Tools.WebClient());
+            _repo = new MangaHereRepository(new Tools.WebClient());
             _cts = new CancellationTokenSource();
         }
-
         [Fact]
         public async Task TestGetSeriesAsync()
         {
@@ -100,7 +96,7 @@ namespace LNLamaScrape.Tests.Repository
 
         }
         [Fact]
-        public async Task TestGetPageTextAsync()
+        public async Task TestGetPageImageAsync()
         {
             var series = await _repo.GetSeriesAsync(_cts.Token);
             var selectedSeries = series.FirstOrDefault();
@@ -113,7 +109,7 @@ namespace LNLamaScrape.Tests.Repository
             foreach (var i in pages.Select(d => (Page)d))
             {
                 Assert.NotNull(i.PageUri);
-                var content = await i.GetPageTextAsync();
+                var content = await i.GetPageImageAsync();
                 Assert.NotNull(content);
                 Assert.IsType<byte[]>(content);
                 var contentString = Encoding.UTF8.GetString(content);

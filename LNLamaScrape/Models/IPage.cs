@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LNLamaScrape.Models.Interfaces
+namespace LNLamaScrape.Models
 {
     public interface IPage
     {
@@ -12,6 +12,7 @@ namespace LNLamaScrape.Models.Interfaces
         Uri ImageUri { get; }
         int PageNo { get; }
         Uri PageUri { get; }
+        string PageContent { get; }
 
         Task<byte[]> GetPageContentAsync();
         Task<byte[]> GetPageContentAsync(CancellationToken token);

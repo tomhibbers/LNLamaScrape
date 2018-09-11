@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp.Extensions;
 using AngleSharp.Parser.Html;
 using LNLamaScrape.Models;
-using LNLamaScrape.Models.Interfaces;
 using WebClient = LNLamaScrape.Tools.WebClient;
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LNLamaScrape.Tests")]
@@ -21,7 +19,8 @@ namespace LNLamaScrape.Repository
         public static readonly RepositoryType RepositoryType = RepositoryType.LightNovel;
         private static readonly Uri RepoIndexUri = new Uri("http://www.readlightnovel.org/novel-list");
 
-        public ReadLightNovelRepository(WebClient webClient) : base(webClient, "Read Light Novel", "http://www.readlightnovel.org/", "ReadLightNovel.png", false)
+        public ReadLightNovelRepository(WebClient webClient) : base(webClient, "Read Light Novel", "http://www.readlightnovel.org/", "ReadLightNovel.png"
+            , false, repositoryType: RepositoryType.LightNovel)
         {
         }
         public override async Task<IReadOnlyList<ISeries>> GetSeriesAsync(CancellationToken token)
@@ -37,6 +36,7 @@ namespace LNLamaScrape.Repository
             var nodes = document.QuerySelectorAll("div.list-by-word-body>ul>li>a");
 
             var output = nodes.Select(d => new Series(this, new Uri(RootUri, d.Attributes["href"].Value), WebUtility.HtmlDecode(d.Text()))).OrderBy(d => d.Title);
+
             return output.ToArray();
         }
         internal override async Task<IReadOnlyList<IChapter>> GetChaptersAsync(ISeries input, CancellationToken token)
@@ -115,7 +115,6 @@ namespace LNLamaScrape.Repository
                 if (!text.StartsWith("Posted on"))
                     content.AppendLine(text);
             }
-            
             return Encoding.UTF8.GetBytes(content.ToString());
         }
         internal override Task<byte[]> GetPageImageAsync(IPage input, CancellationToken token)

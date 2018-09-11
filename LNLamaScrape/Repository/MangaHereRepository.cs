@@ -8,7 +8,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using LNLamaScrape.Models;
-using LNLamaScrape.Models.Interfaces;
 using WebClient = LNLamaScrape.Tools.WebClient;
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("LNLamaScrape.Tests")]
 
@@ -16,11 +15,10 @@ namespace LNLamaScrape.Repository
 {
     internal class MangaHereRepository : RepositoryBase
     {
-        public static readonly RepositoryType RepositoryType = RepositoryType.Manga;
         private static readonly Uri RepoIndexUri = new Uri("http://www.mangahere.co/mangalist/");
 
         public MangaHereRepository(WebClient webClient) : base(webClient, "Manga Here", "http://www.mangahere.co/",
-            "MangaHere.png", false)
+            "MangaHere.png", false, repositoryType: RepositoryType.Manga)
         {
         }
 
