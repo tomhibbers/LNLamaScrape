@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LNLamaScrape", "LNLamaScrap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LNLamaScrape.Tests", "LNLamaScrape.Tests\LNLamaScrape.Tests.csproj", "{1325A963-4CEE-485F-909F-1B6E8F4A7975}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Basic", "Example.Basic\Example.Basic.csproj", "{84775D06-D753-43E4-979D-80DAD47FE2C3}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{B421B13C-700C-477C-9E54-9F26E52A028B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{48FBE3EE-4A2D-4EAA-8613-7E4C2A06195B}"
@@ -34,10 +32,6 @@ Global
 		{1325A963-4CEE-485F-909F-1B6E8F4A7975}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1325A963-4CEE-485F-909F-1B6E8F4A7975}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1325A963-4CEE-485F-909F-1B6E8F4A7975}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84775D06-D753-43E4-979D-80DAD47FE2C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84775D06-D753-43E4-979D-80DAD47FE2C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84775D06-D753-43E4-979D-80DAD47FE2C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84775D06-D753-43E4-979D-80DAD47FE2C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,7 +39,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C9E29140-890E-49F1-976C-5B83339A5C58} = {61E6A1AD-5692-4EB7-A27E-A07872B56E93}
 		{1325A963-4CEE-485F-909F-1B6E8F4A7975} = {48FBE3EE-4A2D-4EAA-8613-7E4C2A06195B}
-		{84775D06-D753-43E4-979D-80DAD47FE2C3} = {B421B13C-700C-477C-9E54-9F26E52A028B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C9EF54E-42A9-49DD-810D-B725930CD0C5}

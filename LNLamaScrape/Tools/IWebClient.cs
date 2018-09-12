@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LNLamaScrape.Tools
 {
-    internal interface IWebClient
+    public interface IWebClient
     {
         Task<byte[]> GetByteArrayAsync(Uri uri, Uri referrer, CancellationToken token);
         Task<string> GetStringAsync(Uri uri, Uri referrer, CancellationToken token);

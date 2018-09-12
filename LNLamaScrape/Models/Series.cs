@@ -8,12 +8,10 @@ using LNLamaScrape.Repository;
 
 namespace LNLamaScrape.Models
 {
-    internal class Series : ISeries
+    public class Series : ISeries
     {
         public RepositoryBase ParentRepositoryInternal { get; private set; }
         public IRepository ParentRepository => ParentRepositoryInternal;
-
-        public int Id { get; set; }
         public string Title { get; private set; }
 
         public string Description { get; internal set; }
@@ -25,7 +23,7 @@ namespace LNLamaScrape.Models
         public string[] Tags { get; internal set; }
         public string[] Genres { get; internal set; }
 
-        internal Series(RepositoryBase parent, Uri seriesPageUri, string title)
+        public Series(RepositoryBase parent, Uri seriesPageUri, string title)
         {
             ParentRepositoryInternal = parent;
             SeriesPageUri = seriesPageUri;
