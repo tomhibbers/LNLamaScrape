@@ -9,7 +9,7 @@ using LNLamaScrape.Tools;
 
 namespace LNLamaScrape.Repository
 {
-    internal abstract class RepositoryBase : IRepository
+    public abstract class RepositoryBase : IRepository
     {
         public RepositoryType RepositoryType { get; }
         internal abstract Task<IReadOnlyList<IChapter>> GetChaptersAsync(ISeries input, CancellationToken token);
@@ -17,7 +17,7 @@ namespace LNLamaScrape.Repository
         internal abstract Task<byte[]> GetPageImageAsync(IPage input, CancellationToken token);
         internal abstract Task<byte[]> GetPageTextAsync(IPage input, CancellationToken token);
         internal abstract Task<byte[]> GetPageContentAsync(IPage input, CancellationToken token);
-        protected readonly IWebClient WebClient;
+        public readonly IWebClient WebClient;
         public string Name { get; private set; }
         public Uri RootUri { get; private set; }
 
@@ -28,12 +28,12 @@ namespace LNLamaScrape.Repository
         public bool SupportsDescription { get; }
 
 
-        protected RepositoryBase(IWebClient webClient, string name, string uriString, string iconFileName, bool supportsAllMetadata, RepositoryType repositoryType) :
+        public RepositoryBase(IWebClient webClient, string name, string uriString, string iconFileName, bool supportsAllMetadata, RepositoryType repositoryType) :
             this(webClient, name, uriString, iconFileName, supportsAllMetadata, supportsAllMetadata, supportsAllMetadata, supportsAllMetadata, supportsAllMetadata, repositoryType)
         {
 
         }
-        protected RepositoryBase(IWebClient webClient, string name, string uriString, string iconFileName, bool supportsCover, bool supportsAuthor, bool supportsLastUpdateTime, bool supportsTags, bool supportsDescription, RepositoryType repositoryType)
+        public RepositoryBase(IWebClient webClient, string name, string uriString, string iconFileName, bool supportsCover, bool supportsAuthor, bool supportsLastUpdateTime, bool supportsTags, bool supportsDescription, RepositoryType repositoryType)
         {
             WebClient = webClient;
             Name = name;

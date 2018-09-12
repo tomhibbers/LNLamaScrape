@@ -8,7 +8,6 @@ namespace LNLamaScrape.Models
 {
     public interface ISeries
     {
-        int Id { get; }
         string Title { get; }
         string Description { get; }
 

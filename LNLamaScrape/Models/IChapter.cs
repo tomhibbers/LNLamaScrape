@@ -9,6 +9,7 @@ namespace LNLamaScrape.Models
     public interface IChapter
     {
         ISeries ParentSeries { get; }
+        string ParentRef { get; }
 
         string Title { get; }
         string Updated { get; }
