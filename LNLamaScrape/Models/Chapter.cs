@@ -46,13 +46,4 @@ namespace LNLamaScrape.Models
         }
 
     }
-
-    //public class Chap2 : Chapter
-    //{
-    //    //public override Series ParentSeriesInternal { get; set; }
-    //    //public Chap2(Series parent, Uri firstPageUri, string title) : base(parent, firstPageUri, title)
-    //    //{
-
-    //    //}
-    //}
 }
