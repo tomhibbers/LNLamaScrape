@@ -7,9 +7,11 @@
     <Authors>Tom Hibbers</Authors>
     <PackageId>LNLamaScrape</PackageId>
     <Product>LNLamaScrape</Product>
-    <Description></Description>
+    <Description>This is a library to parse manga and novel sites.</Description>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
+    <PackageProjectUrl>https://github.com/tomhibbers/lnlama-scrape</PackageProjectUrl>
+    <RepositoryUrl></RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
