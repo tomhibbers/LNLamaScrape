@@ -12,11 +12,11 @@ namespace LNLamaScrape.Repository
     public abstract class RepositoryBase : IRepository
     {
         public RepositoryType RepositoryType { get; }
-        internal abstract Task<IReadOnlyList<IChapter>> GetChaptersAsync(ISeries input, CancellationToken token);
-        internal abstract Task<IReadOnlyList<IPage>> GetPagesAsync(IChapter input, CancellationToken token);
-        internal abstract Task<byte[]> GetPageImageAsync(IPage input, CancellationToken token);
-        internal abstract Task<byte[]> GetPageTextAsync(IPage input, CancellationToken token);
-        internal abstract Task<byte[]> GetPageContentAsync(IPage input, CancellationToken token);
+        public abstract Task<IReadOnlyList<IChapter>> GetChaptersAsync(ISeries input, CancellationToken token);
+        public abstract Task<IReadOnlyList<IPage>> GetPagesAsync(IChapter input, CancellationToken token);
+        public abstract Task<byte[]> GetPageImageAsync(IPage input, CancellationToken token);
+        public abstract Task<byte[]> GetPageTextAsync(IPage input, CancellationToken token);
+        public abstract Task<byte[]> GetPageContentAsync(IPage input, CancellationToken token);
         public readonly IWebClient WebClient;
         public string Name { get; private set; }
         public Uri RootUri { get; private set; }

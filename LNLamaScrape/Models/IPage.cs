@@ -8,7 +8,7 @@ namespace LNLamaScrape.Models
 {
     public interface IPage
     {
-        IChapter ParentChapter { get; }
+        IChapter GetParentChapter();
         Uri ImageUri { get; }
         int PageNo { get; }
         Uri PageUri { get; }

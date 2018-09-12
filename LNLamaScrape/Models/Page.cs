@@ -11,8 +11,8 @@ namespace LNLamaScrape.Models
 {
     public class Page : IPage
     {
-        public Chapter ParentChapterInternal { get; private set; }
-        public IChapter ParentChapter => ParentChapterInternal;
+        private readonly Chapter _parentChapterInternal;
+        internal IChapter ParentChapter => _parentChapterInternal;
         public string ParentRef { get; set; }
         public string PageRef { get; set; }
         public Uri PageUri { get; private set; }
@@ -20,14 +20,18 @@ namespace LNLamaScrape.Models
         public Uri ImageUri { get; internal set; }
         public string PageContent { get; internal set; }
 
+        public IChapter GetParentChapter()
+        {
+            return ParentChapter;
+        }
         public Page(Chapter parent, Uri pageUri, int pageNo)
         {
-            ParentChapterInternal = parent;
-            if (ParentChapterInternal != null)
-                ParentRef = ParentChapterInternal?.ChapterRef;
+            _parentChapterInternal = parent;
+            if (_parentChapterInternal != null)
+                ParentRef = _parentChapterInternal?.ChapterRef;
             PageUri = pageUri;
             PageNo = pageNo;
-            if(PageNo!=1)
+            if (PageNo != 1)
                 PageRef = string.Join('-', ParentRef, PageUri.Segments.Last());
             PageRef = ParentRef;
         }
@@ -40,7 +44,7 @@ namespace LNLamaScrape.Models
         }
         internal Task<byte[]> GetPageImageAsync(CancellationToken token)
         {
-            return ParentChapterInternal.ParentSeriesInternal.ParentRepositoryInternal.GetPageImageAsync(this, token);
+            return _parentChapterInternal.GetParentSeries().GetParentRepository().GetPageImageAsync(this, token);
         }
         internal Task<byte[]> GetPageTextAsync()
         {
@@ -51,7 +55,7 @@ namespace LNLamaScrape.Models
         }
         internal Task<byte[]> GetPageTextAsync(CancellationToken token)
         {
-            return ParentChapterInternal.ParentSeriesInternal.ParentRepositoryInternal.GetPageTextAsync(this, token);
+            return _parentChapterInternal.GetParentSeries().GetParentRepository().GetPageTextAsync(this, token);
         }
 
         public Task<byte[]> GetPageContentAsync()
@@ -63,7 +67,7 @@ namespace LNLamaScrape.Models
         }
         public Task<byte[]> GetPageContentAsync(CancellationToken token)
         {
-            return ParentChapterInternal.ParentSeriesInternal.ParentRepositoryInternal.GetPageContentAsync(this, token);
+            return _parentChapterInternal.GetParentSeries().GetParentRepository().GetPageContentAsync(this, token);
         }
     }
 }

@@ -39,7 +39,8 @@ namespace LNLamaScrape.Repository
 
             return output.ToArray();
         }
-        internal override async Task<IReadOnlyList<IChapter>> GetChaptersAsync(ISeries input, CancellationToken token)
+
+        public override async Task<IReadOnlyList<IChapter>> GetChaptersAsync(ISeries input, CancellationToken token)
         {
             var html = await WebClient.GetStringAsync(input.SeriesPageUri, RepoIndexUri, token);
             if (html == null)
@@ -80,22 +81,24 @@ namespace LNLamaScrape.Repository
             var output = nodes.Select(d => new Chapter((Series)input, new Uri(RootUri, d.Attributes["href"].Value), WebUtility.HtmlDecode(d.Text()))).OrderBy(d => d.Title);
             return output.ToArray();
         }
-        internal override async Task<IReadOnlyList<IPage>> GetPagesAsync(IChapter input, CancellationToken token)
+
+        public override async Task<IReadOnlyList<IPage>> GetPagesAsync(IChapter input, CancellationToken token)
         {
             //Only 1 page per chapter
             var page = new Page((Chapter)input, input.FirstPageUri, 1);
             return new Page[] { page };
         }
 
-        internal override async Task<byte[]> GetPageContentAsync(IPage input, CancellationToken token)
+        public override async Task<byte[]> GetPageContentAsync(IPage input, CancellationToken token)
         {
             if (RepositoryType == RepositoryType.LightNovel)
                 return await GetPageTextAsync(input, token);
             return await GetPageImageAsync(input, token);
         }
-        internal override async Task<byte[]> GetPageTextAsync(IPage input, CancellationToken token)
+
+        public override async Task<byte[]> GetPageTextAsync(IPage input, CancellationToken token)
         {
-            var html = await WebClient.GetStringAsync(input.PageUri, input.ParentChapter.FirstPageUri, token);
+            var html = await WebClient.GetStringAsync(input.PageUri, input.GetParentChapter().FirstPageUri, token);
             if (html == null)
             {
                 return null;
@@ -117,7 +120,8 @@ namespace LNLamaScrape.Repository
             }
             return Encoding.UTF8.GetBytes(content.ToString());
         }
-        internal override Task<byte[]> GetPageImageAsync(IPage input, CancellationToken token)
+
+        public override Task<byte[]> GetPageImageAsync(IPage input, CancellationToken token)
         {
             throw new NotImplementedException();
         }

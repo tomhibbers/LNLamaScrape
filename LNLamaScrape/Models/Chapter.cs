@@ -10,8 +10,8 @@ namespace LNLamaScrape.Models
 {
     public class Chapter : IChapter
     {
-        public Series ParentSeriesInternal { get; private set; }
-        public ISeries ParentSeries => ParentSeriesInternal;
+        readonly Series _parentSeriesInternal;
+        internal ISeries ParentSeries => _parentSeriesInternal;
         public string ParentRef { get; set; }
         public Uri FirstPageUri { get; private set; }
         public string ChapterRef { get; set; }
@@ -20,8 +20,8 @@ namespace LNLamaScrape.Models
 
         public Chapter(Series parent, Uri firstPageUri, string title)
         {
-            ParentSeriesInternal = parent;
-            if (ParentSeriesInternal != null)
+            _parentSeriesInternal = parent;
+            if (_parentSeriesInternal != null)
                 ParentRef = ParentSeries?.Title;
             FirstPageUri = firstPageUri;
             ChapterRef = string.Join('-', ParentRef, FirstPageUri.Segments.Last());
@@ -29,6 +29,10 @@ namespace LNLamaScrape.Models
             Updated = string.Empty;
         }
 
+        public ISeries GetParentSeries()
+        {
+            return this.ParentSeries;
+        }
         public virtual Task<IReadOnlyList<IPage>> GetPagesAsync()
         {
             using (var cts = new CancellationTokenSource())
@@ -38,8 +42,17 @@ namespace LNLamaScrape.Models
         }
         public virtual Task<IReadOnlyList<IPage>> GetPagesAsync(CancellationToken token)
         {
-            return ParentSeriesInternal.ParentRepositoryInternal.GetPagesAsync(this, token);
+            return _parentSeriesInternal.GetParentRepository().GetPagesAsync(this, token);
         }
 
     }
+
+    //public class Chap2 : Chapter
+    //{
+    //    //public override Series ParentSeriesInternal { get; set; }
+    //    //public Chap2(Series parent, Uri firstPageUri, string title) : base(parent, firstPageUri, title)
+    //    //{
+
+    //    //}
+    //}
 }

@@ -10,8 +10,8 @@ namespace LNLamaScrape.Models
 {
     public class Series : ISeries
     {
-        public RepositoryBase ParentRepositoryInternal { get; private set; }
-        public IRepository ParentRepository => ParentRepositoryInternal;
+        readonly RepositoryBase _parentRepositoryInternal;
+        internal IRepository ParentRepository => _parentRepositoryInternal;
         public string Title { get; private set; }
 
         public string Description { get; internal set; }
@@ -25,10 +25,15 @@ namespace LNLamaScrape.Models
 
         public Series(RepositoryBase parent, Uri seriesPageUri, string title)
         {
-            ParentRepositoryInternal = parent;
+            _parentRepositoryInternal = parent;
             SeriesPageUri = seriesPageUri;
             Title = title;
             Updated = string.Empty;
+        }
+
+        public IRepository GetParentRepository()
+        {
+            return ParentRepository;
         }
         public Task<byte[]> GetCoverAsync()
         {
@@ -39,7 +44,7 @@ namespace LNLamaScrape.Models
         }
         public Task<byte[]> GetCoverAsync(CancellationToken token)
         {
-            return ParentRepositoryInternal.GetCoverImageAsync(this, token);
+            return _parentRepositoryInternal.GetCoverImageAsync(this, token);
         }
 
         public Task<IReadOnlyList<IChapter>> GetChaptersAsync()
@@ -52,7 +57,7 @@ namespace LNLamaScrape.Models
 
         public virtual Task<IReadOnlyList<IChapter>> GetChaptersAsync(CancellationToken token)
         {
-            return ParentRepositoryInternal.GetChaptersAsync(this, token);
+            return _parentRepositoryInternal.GetChaptersAsync(this, token);
         }
 
         public void UpdateSeriesDetails(string description = null, string[] titlesAlternative = null, Uri coverImageUri = null, string author = null, string updated = null, string[] tags = null, string[] genres = null)
