@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LNLamaScrape.Repository;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
@@ -8,6 +9,7 @@ namespace LNLamaScrape.Models
 {
     public interface ISeries
     {
+        IRepository ParentRepository { get; }
         string Title { get; }
         string Description { get; }
 
