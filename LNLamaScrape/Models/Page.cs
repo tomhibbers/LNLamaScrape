@@ -29,13 +29,8 @@ namespace LNLamaScrape.Models
         public Page(Chapter parent, Uri pageUri, int pageNo)
         {
             _parentChapterInternal = parent;
-            if (_parentChapterInternal != null)
-                ParentRef = _parentChapterInternal?.ChapterRef;
             PageUri = pageUri;
             PageNo = pageNo;
-            if (PageNo != 1)
-                PageRef = string.Join('-', ParentRef, PageUri.Segments.Last());
-            PageRef = ParentRef;
         }
         internal Task<byte[]> GetPageImageAsync()
         {

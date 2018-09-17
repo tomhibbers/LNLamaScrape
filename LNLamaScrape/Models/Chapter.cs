@@ -22,10 +22,7 @@ namespace LNLamaScrape.Models
         public Chapter(Series parent, Uri firstPageUri, string title)
         {
             _parentSeriesInternal = parent;
-            if (_parentSeriesInternal != null)
-                ParentRef = ParentSeries?.Title;
             FirstPageUri = firstPageUri;
-            ChapterRef = string.Join('-', ParentRef, FirstPageUri.Segments.Last());
             Title = title;
             Updated = string.Empty;
         }
