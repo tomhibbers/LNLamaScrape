@@ -24,6 +24,8 @@ namespace LNLamaScrape.Models
         {
             return ParentChapter;
         }
+
+        public Page() { }
         public Page(Chapter parent, Uri pageUri, int pageNo)
         {
             _parentChapterInternal = parent;

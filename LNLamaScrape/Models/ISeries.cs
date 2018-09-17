@@ -26,7 +26,5 @@ namespace LNLamaScrape.Models
 
         Task<IReadOnlyList<IChapter>> GetChaptersAsync();
         Task<IReadOnlyList<IChapter>> GetChaptersAsync(CancellationToken token);
-        //void UpdateSeriesDetails(string description = null, string[] titlesAlternative = null,
-        //    Uri coverImageUri = null, string author = null, string updated = null, string[] tags = null, string[] genres = null);
     }
 }

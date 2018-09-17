@@ -18,6 +18,7 @@ namespace LNLamaScrape.Models
         public string Title { get; private set; }
         public string Updated { get; private set; }
 
+        public Chapter() { }
         public Chapter(Series parent, Uri firstPageUri, string title)
         {
             _parentSeriesInternal = parent;

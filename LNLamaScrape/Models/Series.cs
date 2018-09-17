@@ -23,6 +23,7 @@ namespace LNLamaScrape.Models
         public string[] Tags { get; set; }
         public string[] Genres { get; set; }
 
+        public Series() { }
         public Series(RepositoryBase parent, Uri seriesPageUri, string title)
         {
             _parentRepositoryInternal = parent;
@@ -59,23 +60,5 @@ namespace LNLamaScrape.Models
         {
             return _parentRepositoryInternal.GetChaptersAsync(this, token);
         }
-
-        //public void UpdateSeriesDetails(string description = null, string[] titlesAlternative = null, Uri coverImageUri = null, string author = null, string updated = null, string[] tags = null, string[] genres = null)
-        //{ 
-        //    if (!string.IsNullOrWhiteSpace(description))
-        //        Description = description;
-        //    if (titlesAlternative != null)
-        //        TitlesAlternative = titlesAlternative;
-        //    if (coverImageUri != null)
-        //        CoverImageUri = coverImageUri;
-        //    if (!string.IsNullOrWhiteSpace(author))
-        //        Author = author;
-        //    if (!string.IsNullOrWhiteSpace(updated))
-        //        Updated = updated;
-        //    if (tags != null)
-        //        Tags = tags;
-        //    if (genres != null)
-        //        Genres = genres;
-        //}
     }
 }
