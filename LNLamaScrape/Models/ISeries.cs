@@ -11,21 +11,22 @@ namespace LNLamaScrape.Models
     {
         IRepository GetParentRepository();
         string Title { get; }
-        string Description { get; }
+        string Description { get; set; }
 
-        string[] TitlesAlternative { get; }
-        Uri SeriesPageUri { get; }
-        Uri CoverImageUri { get; }
-        string Author { get; }
-        string Updated { get; }
-        string[] Tags { get; }
+        string[] TitlesAlternative { get; set; }
+        Uri SeriesPageUri { get; set; }
+        Uri CoverImageUri { get; set; }
+        string Author { get; set; }
+        string Updated { get; set; }
+        string[] Tags { get; set; }
+        string[] Genres { get; set; }
 
         Task<byte[]> GetCoverAsync();
         Task<byte[]> GetCoverAsync(CancellationToken token);
 
         Task<IReadOnlyList<IChapter>> GetChaptersAsync();
         Task<IReadOnlyList<IChapter>> GetChaptersAsync(CancellationToken token);
-        void UpdateSeriesDetails(string description = null, string[] titlesAlternative = null,
-            Uri coverImageUri = null, string author = null, string updated = null, string[] tags = null, string[] genres = null);
+        //void UpdateSeriesDetails(string description = null, string[] titlesAlternative = null,
+        //    Uri coverImageUri = null, string author = null, string updated = null, string[] tags = null, string[] genres = null);
     }
 }

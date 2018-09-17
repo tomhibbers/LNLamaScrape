@@ -73,7 +73,16 @@ namespace LNLamaScrape.Repository
                 }
             }
 
-            input.UpdateSeriesDetails(description: description, genres: genres, titlesAlternative: titlesAlternative);
+            input.Description = description;
+            input.Genres = genres;
+            input.TitlesAlternative = titlesAlternative;
+
+            //get cover
+            var coverItem = document.QuerySelector("div.novel-cover>a>img");
+            if (!string.IsNullOrWhiteSpace(coverItem.Attributes["src"].Value))
+            {
+                input.CoverImageUri = new Uri(coverItem.Attributes["src"].Value);
+            }
 
             //get chapters
             var nodes = document.QuerySelectorAll("ul.chapter-chs>li>a");

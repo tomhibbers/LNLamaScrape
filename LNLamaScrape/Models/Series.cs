@@ -14,14 +14,14 @@ namespace LNLamaScrape.Models
         internal IRepository ParentRepository => _parentRepositoryInternal;
         public string Title { get; private set; }
 
-        public string Description { get; internal set; }
-        public string[] TitlesAlternative { get; internal set; }
-        public Uri SeriesPageUri { get; internal set; }
-        public Uri CoverImageUri { get; internal set; }
-        public string Author { get; internal set; }
-        public string Updated { get; internal set; }
-        public string[] Tags { get; internal set; }
-        public string[] Genres { get; internal set; }
+        public string Description { get; set; }
+        public string[] TitlesAlternative { get; set; }
+        public Uri SeriesPageUri { get; set; }
+        public Uri CoverImageUri { get; set; }
+        public string Author { get; set; }
+        public string Updated { get; set; }
+        public string[] Tags { get; set; }
+        public string[] Genres { get; set; }
 
         public Series(RepositoryBase parent, Uri seriesPageUri, string title)
         {
@@ -60,22 +60,22 @@ namespace LNLamaScrape.Models
             return _parentRepositoryInternal.GetChaptersAsync(this, token);
         }
 
-        public void UpdateSeriesDetails(string description = null, string[] titlesAlternative = null, Uri coverImageUri = null, string author = null, string updated = null, string[] tags = null, string[] genres = null)
-        { 
-            if (!string.IsNullOrWhiteSpace(description))
-                Description = description;
-            if (titlesAlternative != null)
-                TitlesAlternative = titlesAlternative;
-            if (coverImageUri != null)
-                CoverImageUri = coverImageUri;
-            if (!string.IsNullOrWhiteSpace(author))
-                Author = author;
-            if (!string.IsNullOrWhiteSpace(updated))
-                Updated = updated;
-            if (tags != null)
-                Tags = tags;
-            if (genres != null)
-                Genres = genres;
-        }
+        //public void UpdateSeriesDetails(string description = null, string[] titlesAlternative = null, Uri coverImageUri = null, string author = null, string updated = null, string[] tags = null, string[] genres = null)
+        //{ 
+        //    if (!string.IsNullOrWhiteSpace(description))
+        //        Description = description;
+        //    if (titlesAlternative != null)
+        //        TitlesAlternative = titlesAlternative;
+        //    if (coverImageUri != null)
+        //        CoverImageUri = coverImageUri;
+        //    if (!string.IsNullOrWhiteSpace(author))
+        //        Author = author;
+        //    if (!string.IsNullOrWhiteSpace(updated))
+        //        Updated = updated;
+        //    if (tags != null)
+        //        Tags = tags;
+        //    if (genres != null)
+        //        Genres = genres;
+        //}
     }
 }
