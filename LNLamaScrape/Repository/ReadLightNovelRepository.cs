@@ -127,6 +127,8 @@ namespace LNLamaScrape.Repository
                 if (!text.StartsWith("Posted on"))
                     content.AppendLine(text);
             }
+            // update pageContent
+            input.PageContent = content.ToString();
             return Encoding.UTF8.GetBytes(content.ToString());
         }
 

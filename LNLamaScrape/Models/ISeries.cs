@@ -10,7 +10,7 @@ namespace LNLamaScrape.Models
     public interface ISeries
     {
         IRepository GetParentRepository();
-        string Title { get; }
+        string Title { get; set; }
         string Description { get; set; }
 
         string[] TitlesAlternative { get; set; }

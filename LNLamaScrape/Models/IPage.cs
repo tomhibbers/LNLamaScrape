@@ -9,10 +9,10 @@ namespace LNLamaScrape.Models
     public interface IPage
     {
         IChapter GetParentChapter();
-        Uri ImageUri { get; }
-        int PageNo { get; }
-        Uri PageUri { get; }
-        string PageContent { get; }
+        Uri ImageUri { get; set; }
+        int PageNo { get; set; }
+        Uri PageUri { get; set; }
+        string PageContent { get; set; }
 
         Task<byte[]> GetPageContentAsync();
         Task<byte[]> GetPageContentAsync(CancellationToken token);

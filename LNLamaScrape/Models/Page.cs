@@ -15,10 +15,10 @@ namespace LNLamaScrape.Models
         internal IChapter ParentChapter => _parentChapterInternal;
         public virtual string ParentRef { get; set; }
         public virtual string  PageRef { get; set; }
-        public Uri PageUri { get; private set; }
-        public int PageNo { get; private set; }
-        public Uri ImageUri { get; internal set; }
-        public string PageContent { get; internal set; }
+        public Uri PageUri { get; set; }
+        public int PageNo { get; set; }
+        public Uri ImageUri { get; set; }
+        public string PageContent { get; set; }
 
         public IChapter GetParentChapter()
         {

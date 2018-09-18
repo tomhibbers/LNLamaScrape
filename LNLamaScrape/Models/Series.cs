@@ -12,7 +12,7 @@ namespace LNLamaScrape.Models
     {
         readonly RepositoryBase _parentRepositoryInternal;
         internal IRepository ParentRepository => _parentRepositoryInternal;
-        public string Title { get; private set; }
+        public string Title { get; set; }
 
         public string Description { get; set; }
         public string[] TitlesAlternative { get; set; }

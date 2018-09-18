@@ -14,9 +14,9 @@ namespace LNLamaScrape.Models
         internal ISeries ParentSeries => _parentSeriesInternal;
         public virtual string ParentRef { get; set; }
         public virtual string ChapterRef { get; set; }
-        public Uri FirstPageUri { get; private set; }
-        public string Title { get; private set; }
-        public string Updated { get; private set; }
+        public Uri FirstPageUri { get; set; }
+        public string Title { get; set; }
+        public string Updated { get; set; }
 
         public Chapter() { }
         public Chapter(Series parent, Uri firstPageUri, string title)
