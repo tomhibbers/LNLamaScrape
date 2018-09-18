@@ -12,9 +12,9 @@ namespace LNLamaScrape.Models
     {
         readonly Series _parentSeriesInternal;
         internal ISeries ParentSeries => _parentSeriesInternal;
-        public string ParentRef { get; set; }
+        public virtual string ParentRef { get; set; }
+        public virtual string ChapterRef { get; set; }
         public Uri FirstPageUri { get; private set; }
-        public string ChapterRef { get; set; }
         public string Title { get; private set; }
         public string Updated { get; private set; }
 

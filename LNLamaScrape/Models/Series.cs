@@ -22,6 +22,7 @@ namespace LNLamaScrape.Models
         public string Updated { get; set; }
         public string[] Tags { get; set; }
         public string[] Genres { get; set; }
+        public virtual string SeriesRef { get; set; }
 
         public Series() { }
         public Series(RepositoryBase parent, Uri seriesPageUri, string title)

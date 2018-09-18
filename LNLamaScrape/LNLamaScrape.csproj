@@ -9,7 +9,7 @@
     <Product>LNLamaScrape</Product>
     <Description>This is a library to parse manga and novel sites.</Description>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <PackageProjectUrl>https://github.com/tomhibbers/lnlama-scrape</PackageProjectUrl>
     <RepositoryUrl></RepositoryUrl>
   </PropertyGroup>

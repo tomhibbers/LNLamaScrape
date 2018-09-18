@@ -13,8 +13,8 @@ namespace LNLamaScrape.Models
     {
         private readonly Chapter _parentChapterInternal;
         internal IChapter ParentChapter => _parentChapterInternal;
-        public string ParentRef { get; set; }
-        public string PageRef { get; set; }
+        public virtual string ParentRef { get; set; }
+        public virtual string  PageRef { get; set; }
         public Uri PageUri { get; private set; }
         public int PageNo { get; private set; }
         public Uri ImageUri { get; internal set; }
