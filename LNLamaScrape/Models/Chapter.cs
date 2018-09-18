@@ -16,6 +16,7 @@ namespace LNLamaScrape.Models
         public virtual string ChapterRef { get; set; }
         public Uri FirstPageUri { get; set; }
         public string Title { get; set; }
+        public string Subtitle { get; set; }
         public string Updated { get; set; }
 
         public Chapter() { }

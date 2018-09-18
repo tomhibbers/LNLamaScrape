@@ -12,6 +12,7 @@ namespace LNLamaScrape.Models
         string ParentRef { get; set; }
 
         string Title { get; set; }
+        string Subtitle { get; set; }
         string Updated { get; set; }
         Uri FirstPageUri { get; set; }
 

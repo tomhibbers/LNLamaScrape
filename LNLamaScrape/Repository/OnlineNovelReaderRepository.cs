@@ -15,12 +15,12 @@ using WebClient = LNLamaScrape.Tools.WebClient;
 
 namespace LNLamaScrape.Repository
 {
-    internal class ReadLightNovelRepository : RepositoryBase
+    internal class OnlineNovelReaderRepository : RepositoryBase
     {
         public static readonly RepositoryType RepositoryType = RepositoryType.LightNovel;
-        private static readonly Uri RepoIndexUri = new Uri("http://www.readlightnovel.org/novel-list");
+        private static readonly Uri RepoIndexUri = new Uri("http://onlinenovelreader.com/novel-list");
 
-        public ReadLightNovelRepository(WebClient webClient) : base(webClient, "Read Light Novel", "http://www.readlightnovel.org/", "ReadLightNovel.png"
+        public OnlineNovelReaderRepository(WebClient webClient) : base(webClient, "Online Novel Reader", "http://onlinenovelreader.com/", "OnlineNovelReader.png"
             , false, repositoryType: RepositoryType.LightNovel)
         {
         }
@@ -117,7 +117,7 @@ namespace LNLamaScrape.Repository
             var parser = new HtmlParser();
             var document = parser.Parse(html);
 
-            var chapterDiv = document.QuerySelector("div.desc");
+            var chapterDiv = document.QuerySelector("div.chapter-content3");
             var subtitle = chapterDiv.QuerySelector("h1");
             subtitle?.Remove();
             chapterDiv.RemoveAll("center");
@@ -140,6 +140,5 @@ namespace LNLamaScrape.Repository
         {
             throw new NotImplementedException();
         }
-
     }
 }

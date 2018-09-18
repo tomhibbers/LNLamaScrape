@@ -33,5 +33,14 @@ namespace LNLamaScrape.Tools
             );
 
         }
+        public static void RemoveAll(this AngleSharp.Dom.IElement source, string query)
+        {
+            var items = source.QuerySelectorAll(query);
+            if (items.Length <= 0) return;
+            foreach (var i in items)
+            {
+                i.Remove();
+            }
+        }
     }
 }

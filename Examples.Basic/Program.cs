@@ -14,7 +14,7 @@ namespace Examples.Basic
     {
         static void Main(string[] args)
         {
-            var series = Repositories.ReadLightNovel.GetSeriesAsync();
+            var series = Repositories.OnlineNovelReader.GetSeriesAsync();
             series.Wait();
             var seriesList = series.Result.Take(3).ToList();
             foreach (var s in seriesList)
