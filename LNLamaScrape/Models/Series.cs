@@ -22,6 +22,8 @@ namespace LNLamaScrape.Models
         public string Updated { get; set; }
         public string[] Tags { get; set; }
         public string[] Genres { get; set; }
+        public int Rating { get; set; }
+        public SeriesStatus Status { get; set; }
         public virtual string SeriesRef { get; set; }
 
         public Series() { }

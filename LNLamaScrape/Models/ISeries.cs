@@ -20,6 +20,8 @@ namespace LNLamaScrape.Models
         string Updated { get; set; }
         string[] Tags { get; set; }
         string[] Genres { get; set; }
+        int Rating { get; set; }
+        SeriesStatus Status { get; set; }
 
         Task<byte[]> GetCoverAsync();
         Task<byte[]> GetCoverAsync(CancellationToken token);
